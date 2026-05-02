@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || "";
 
 // middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://birthday-vault-sigma.vercel.app", // Your live frontend URL
+  methods: ["GET", "POST"],
+  credentials: true
+}
+));
 app.use(express.json());
 
 mongoose.connect(MONGODB_URI)
@@ -24,7 +29,7 @@ app.get('/', (req, res) => {
 
 
 // 1. Route to add a friend's message (You'll use this to set up your data)
-app.post('/api/friends', async (req, res) => {
+app.post('/friends', async (req, res) => {
   try {
     const newFriend = new Friend(req.body);
     await newFriend.save();
@@ -35,7 +40,7 @@ app.post('/api/friends', async (req, res) => {
 });
 
 // 2. Route for your friends to find their message
-app.get('/api/friends/:name', async (req, res) => {
+app.get('/friends/:name', async (req, res) => {
   try {
     const inputName = req.params.name.toLowerCase();
     
@@ -65,8 +70,12 @@ app.get('/api/friends/:name', async (req, res) => {
 });
 
 
-
+//  this only runs when working on my computer 
+if(process.env.NODE_ENV !== "production"){
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+}
+
+export default app;
 
