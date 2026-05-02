@@ -10,12 +10,36 @@ const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || "";
 
 // middleware
+// app.use(cors({
+//   origin: "https://birthday-vault-sigma.vercel.app", // Your live frontend URL
+//   methods: ["GET", "POST"],
+//   credentials: true
+// }
+// ));
+
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://birthday-vault-sigma.vercel.app"
+];
+
 app.use(cors({
-  origin: "https://birthday-vault-sigma.vercel.app", // Your live frontend URL
-  methods: ["GET", "POST"],
-  credentials: true
-}
-));
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (
+      allowedOrigins.includes(origin) ||
+      origin.includes(".vercel.app")
+    ) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+}));
+
+
 app.use(express.json());
 
 mongoose.connect(MONGODB_URI)
@@ -29,7 +53,7 @@ app.get('/', (req, res) => {
 
 
 // 1. Route to add a friend's message (You'll use this to set up your data)
-app.post('api/friends', async (req, res) => {
+app.post('/api/friends', async (req, res) => {
   try {
     const newFriend = new Friend(req.body);
     await newFriend.save();
@@ -40,7 +64,7 @@ app.post('api/friends', async (req, res) => {
 });
 
 // 2. Route for your friends to find their message
-app.get('api/friends/:name', async (req, res) => {
+app.get('/api/friends/:name', async (req, res) => {
   try {
     const inputName = req.params.name.toLowerCase();
     
