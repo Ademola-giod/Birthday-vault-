@@ -55,9 +55,16 @@ app.get('/', (req, res) => {
 // 1. Route to add a friend's message (You'll use this to set up your data)
 app.post('/api/friends', async (req, res) => {
   try {
-    const newFriend = new Friend(req.body);
-    await newFriend.save();
-    res.status(201).json({ msg: "Friend added successfully!" });
+    const { name, message, nicknames, whatTheyveBeenUpTo } = req.body;
+    
+    // findOneAndUpdate with upsert:true will update if they exist, or create if they don't
+    const updatedFriend = await Friend.findOneAndUpdate(
+      { name: name.toLowerCase() }, 
+      { message, nicknames, whatTheyveBeenUpTo },
+      { new: true, upsert: true } 
+    );
+
+    res.status(201).json({ msg: "Vault updated!", data: updatedFriend });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
