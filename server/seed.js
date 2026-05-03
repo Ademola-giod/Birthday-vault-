@@ -14,7 +14,7 @@ const friendsData = [
     nicknames: ["tosin", "glory"],
     message: "hey😍 sister Tosin, My lovely sister. super proud of who you are becoming and i am so grateful for a siter like you , we had a lot when we were younger and yes, i love those moments, i miss you big, miss your food ( oh yes, the peppered spaghetti, noodles, all kinds ). i pray the lord upholds you in every step you take, every decisions you make and may he bless you abundantly. HAPPY BIRTHDAY TO ME!!! .........say hello to my beautiful neice FUNMILAYO for me and give her a big hug from me. I LOVE YOU SISTER💖",
 
-    whatTheyveBeenUpTo: "Seeing you start that new business and stay consistent has been inspiring."
+    whatTheyveBeenUpTo: "You've had a massive year—Chasing your dreams and leveling up. keep it up... Proud of you !!😊."
   },
   {
     name: "Blessing",
