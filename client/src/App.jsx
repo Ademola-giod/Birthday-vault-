@@ -76,7 +76,7 @@ function App() {
             <Lock className="text-blue-500" size={28} />
           </div>
           <h1 className="text-4xl font-black tracking-tighter text-white mb-2 cursor-pointer active:scale-95 transition-transform">
-            THE VAULT<span className="text-blue-600">.</span>
+            THE BIRTHDAY VAULT 🎉<span className="text-blue-600">.</span>
           </h1>
           <div className="flex items-center justify-center gap-2 text-slate-500">
             <ShieldCheck size={14} />

@@ -87,7 +87,7 @@ app.get('/api/friends/:name', async (req, res) => {
     if (!friend) {
       return res.json({
         name: "Friend",
-        message: "I might not have a specific secret message for you yet, but I'm so glad you're here celebrating with me! Your support means the world.",
+        message: "I might not have a specific secret message for you yet 🤔, but I'm so glad you're here celebrating with me!🤗❤ Your support means the world.",
         whatTheyveBeenUpTo: "Being a great person and making this day special just by checking in!"
       });
     }
